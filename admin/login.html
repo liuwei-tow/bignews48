@@ -84,12 +84,13 @@
           success: function (backData) {
             console.log(backData);
             if (backData.code == 200) {
-              $('#myModal').on('hidden.bs.modal', function (e) {
-                window.location.href='./index.html'
-              })
               $('.modal-body').text(backData.msg)
               $('#myModal').modal();
-            }else{
+              $('#myModal').on('hidden.bs.modal', function (e) {
+                localStorage.setItem('token',backData.token);
+                window.location.href = './index.html';
+              })
+            } else {
               $('.modal-body').text(backData.msg);
               $('#myModal').modal();
             }
