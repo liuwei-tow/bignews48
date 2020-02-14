@@ -1,0 +1,43 @@
+[33mcommit 2b6542e2ff50e473a93566ffab88991cf0136462[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: Lwei <654074610@qq.com>
+Date:   Thu Feb 13 19:41:59 2020 +0800
+
+    测试readme加了1
+
+[33mcommit 0da936a1fbe0d4e865297a519c82dffcc9348631[m
+Author: Lwei <654074610@qq.com>
+Date:   Thu Feb 13 18:03:11 2020 +0800
+
+    新增了一个http.js文件
+
+[33mcommit 4ca9e24214191cf6ec56cab4a615098ee4684428[m
+Author: Lwei <654074610@qq.com>
+Date:   Thu Feb 13 16:07:56 2020 +0800
+
+    登出成功！
+
+[33mcommit 069bf868c004f9a1f532af0b58dbedcfa2c66f71[m
+Author: Lwei <654074610@qq.com>
+Date:   Thu Feb 13 15:53:37 2020 +0800
+
+    登入成功和主页个人信息显示完成
+
+[33mcommit be3a732c1c19de225c5334ee0509c2a4c24ee98b[m
+Author: Lwei <654074610@qq.com>
+Date:   Thu Feb 13 10:08:44 2020 +0800
+
+    Update login.html
+    
+    写好了登录
+
+[33mcommit cd67c1249600cb544a1819f5ef43fe188d4374ad[m
+Author: Lwei <654074610@qq.com>
+Date:   Wed Feb 12 10:57:25 2020 +0800
+
+    准备好了静态页面
+
+[33mcommit 03aaddcf1fd54ef7db28d26968c459f73b3e6381[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: liuwei-tow <57738023+liuwei-tow@users.noreply.github.com>
+Date:   Wed Feb 12 10:09:27 2020 +0800
+
+    Initial commit
