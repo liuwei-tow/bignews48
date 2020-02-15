@@ -51,5 +51,32 @@
             </table>
         </div>
     </div>
+    <script src="./libs/http.js"></script>
+    <script id="list" type="text/html">
+        {{each data v}}
+        <tr>
+            <td>{{v.name}}</td>
+            <td>{{v.slug}}</td>
+            <td class="text-center">
+                <a href="javascript:void(0)" data-id={{v.id}} data-toggle="modal" class=" btn btn-info btn-xs">编辑</a>
+                <a href="javascript:void(0)" data-id={{v.id}} class="btn btn-danger btn-xs">删除</a>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+    <script>
+        //直接发送ajax请求获取文章列表管理
+        $.ajax({
+            
+            type: 'get',
+            url: BigNew.category_list,
+            success: function (backData) {
+                // console.log(backData);
+                let resHtml = template('list',backData);
+                $('tbody').html(resHtml);
+            }
+        })
+    </script>
+</body>
 
 </html>
