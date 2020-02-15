@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="./libs/jquery-1.12.4.min.js"></script>
+    <script src="./libs/http.js">
 
+    </script>
 </head>
 
 <body>
@@ -68,6 +70,57 @@
             </form>
         </div>
     </div>
+    <script>
+        $(function () {
+
+            //发送ajax请求 获取用户个人信息
+            $.ajax({
+                type: 'get',
+                url: BigNew.user_detail,
+                success: function (backData) {
+                    // console.log(backData);
+                    if (backData.code == 200) {
+                        //循环 让获取的信息显示到各自的页面中
+                        for (let key in backData.data) {
+                            $('input.' + key).val(backData.data[key]);
+                        }
+                        $('img.user_pic').attr('src', backData.data.userPic);
+                    }
+                }
+            });
+            //图片预览
+            $('#exampleInputFile').on('change', function () {
+                let file1 = this.files[0];
+                // console.log(file1);
+                //可以获取当前文件的内存URL
+                let url = URL.createObjectURL(file1);
+                $('img.user_pic').attr('src', url);
+
+            });
+
+            //设置用户信息修改的点击事件
+            $('button.btn').on('click', function (e) {
+                e.preventDefault();
+                let form1 = document.querySelector('form');
+                let fd = new FormData(form1);
+                //发送ajax请求完成修改
+                $.ajax({
+                    type: 'post',
+                    url: BigNew.user_edit,
+                    data: fd,
+                    processData: false,   //  告诉jquery不要处理发送的数据
+                    contentType: false,   // 告诉jquery不要设置content-Type请求头
+                    success:function(backData){
+                        // console.log(backData);
+                        if (backData.code == 200){
+                            alert('更新成功！');
+                            parent.window.location.reload();
+                        }
+                    }
+                })
+            });
+        })
+    </script>
 </body>
 
 </html>
