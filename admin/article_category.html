@@ -83,6 +83,30 @@
         </div>
     </div>
 
+    <!-- 模态框插件2 -->
+    <!-- Large modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large
+        modal</button>
+
+    <div class="modal fade bs-example-modal-lg" tabindex="-9" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                ...
+            </div>
+        </div>
+    </div>
+
+    <!-- Small modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small
+        modal</button>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-9" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                ...
+            </div>
+        </div>
+    </div>
 
 
     <script src="./libs/http.js"></script>
@@ -115,15 +139,43 @@
             $('#myModal').on('shown.bs.modal', function (e) {
                 // console.log(e.relatedTarget);
                 //判断是新增还是编辑
-                if (e.relatedTarget == $('#xinzengfenlei')[0]){
+                if (e.relatedTarget == $('#xinzengfenlei')[0]) {
                     //新增
                     $('#myModalModalLabel').text('新增类别');
                     $('#xinzeng').text('新增').addClass('btn-primary').removeClass('btn-success');
-                   
-                }else{
+
+                } else {
                     $('#myModalModalLabel').text('编辑类别');
                     $('#xinzeng').text('编辑').addClass('btn-success').removeClass('btn-primary');
-                    
+
+                }
+            });
+
+            $('#xinzeng').on('click', function () {
+                if ($(this).hasClass('btn-primary')) {
+                    let recipient = $('#recipient-name').val().trim();
+                    let message = $('#message-text').val().trim();
+                    //发送ajax请求
+                    $.ajax({
+                        type: 'post',
+                        url: BigNew.category_add,
+                        data: {
+                            name: recipient,
+                            slug: message
+                        },
+                        success: function (backData) {
+                            // console.log(backData);
+                            if (backData.code == 201) {
+                                $('#myModal').modal('hide');
+                                alert(backData.msg);
+
+                            } else {
+                                alert(backData.msg);
+                            }
+                        }
+                    })
+                } else {
+
                 }
             });
         });
