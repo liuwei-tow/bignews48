@@ -81,6 +81,22 @@
         {{/each}}
         
     </script>
+
+    <script id="list" type="text/html">
+        {{each data.data v}}
+        <tr>
+            <td>{{v.title}}</td>
+            <td>{{v.author}}</td>
+            <td>{{v.category}}</td>
+            <td class="text-center">{{v.date}}</td>
+            <td class="text-center">{{v.state}}</td>
+            <td class="text-center">
+                <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
+                <a href="javascript:void(0);" data-id="{{v.id}}" class="btn btn-danger btn-xs delete">删除</a>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
     <script>
 
         //创建入口函数
@@ -102,18 +118,41 @@
             });
             //发送ajax请求获取文章搜索列表
             $.ajax({
-                type:'get',
-                url:BigNew.article_query,
-                data:{
-                    type:$('#selCategory').val(),
-                    state:$('#selStatus').val(),
-                    page:1,
-                    perpage:6
+                type: 'get',
+                url: BigNew.article_query,
+                data: {
+                    type: $('#selCategory').val(),
+                    state: $('#selStatus').val(),
+                    page: 1,
+                    perpage: 6
                 },
-                success:function(backData){
-                    console.log(backData);
-                    
+                success: function (backData) {
+                    // console.log(backData);
+                    //调用模板引擎核心方法
+                    let resHtml = template('list', backData);
+                    $('tbody').html(resHtml);
                 }
+            });
+            //给筛选按钮设置点击事件，获取复合要求的文章
+
+            $('#btnSearch').on('click', function (e) {
+                e.preventDefault();
+                $.ajax({
+                type: 'get',
+                url: BigNew.article_query,
+                data: {
+                    type: $('#selCategory').val(),
+                    state: $('#selStatus').val(),
+                    page: 1,
+                    perpage: 6
+                },
+                success: function (backData) {
+                    // console.log(backData);
+                    //调用模板引擎核心方法
+                    let resHtml = template('list', backData);
+                    $('tbody').html(resHtml);
+                }
+            });
             })
 
         });
